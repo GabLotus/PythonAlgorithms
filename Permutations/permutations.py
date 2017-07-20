@@ -6,12 +6,9 @@ def verifyMultipliers(a, b, total_p):
 	else:
 		return total_p
 		
-		
-
-#s = "abbc"
-#d = "abbcbbac"
 
 print(sys.argv[0])		
+
 if len(sys.argv) >= 3:
 	s = sys.argv[1]
 	d = sys.argv[2]
@@ -21,9 +18,6 @@ else:
 	d = "abbcbbac"
 	print("insuficient arguments. Running the program with inputs: " + s + " and: " + d)
 	
-s = s.lower()
-d = d.lower()
-
 if (not (s.isalpha())) or (not (d.isalpha())):
 	print("arguments must contain letters only")
 	sys.exit()
@@ -32,8 +26,8 @@ if len(s) > len(d):
 	print("first argument must be shorter or equal to the second")
 	sys.exit()
 
-
-
+s = s.lower()
+d = d.lower()	
 
 primes = [ 3,5,7,11,13,17,
 		   19,23,29,31,37,
