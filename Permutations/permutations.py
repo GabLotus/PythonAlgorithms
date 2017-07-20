@@ -20,6 +20,17 @@ else:
 	s = "abbc"
 	d = "abbcbbac"
 	print("insuficient arguments. Running the program with inputs: " + s + " and: " + d)
+	
+s = s.lower()
+d = d.lower()
+
+if (not (s.isalpha())) or (not (d.isalpha())):
+	print("arguments must contain letters only")
+	sys.exit()
+	
+if len(s) > len(d):
+	print("first argument must be shorter or equal to the second")
+	sys.exit()
 
 
 
