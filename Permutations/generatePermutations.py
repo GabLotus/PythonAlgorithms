@@ -1,4 +1,4 @@
-
+import sys
 
 def insertCharacters(s, c):
 	strings = []
@@ -11,7 +11,22 @@ def insertCharacters(s, c):
 		
 
 
-s = "abc"
+def findAllPermutations(s):
+	permutations = []
+	permutations.append("")
+	
+	for c in s:
+		tempPermutations = []
+		for p in permutations:
+			insertedChars = insertCharacters(p, c)
+			for p_temp in insertedChars:
+				tempPermutations.append(p_temp)
+		
+		permutations = tempPermutations
+	return permutations
 
-new_s = insertCharacters(s[0:(len(s) - 1)], s[(len(s) - 1)])
+# new_s = insertCharacters(s[0:(len(s) - 1)], s[(len(s) - 1)])
+s = sys.argv[1]
+
+new_s = findAllPermutations(s)
 print(new_s)
