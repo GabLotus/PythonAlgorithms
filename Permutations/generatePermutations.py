@@ -18,8 +18,7 @@ def findAllPermutations(s):
 	for c in s:
 		tempPermutations = []
 		for p in permutations:
-			insertedChars = insertCharacters(p, c)
-			for p_temp in insertedChars:
+			for p_temp in insertCharacters(p,c):
 				tempPermutations.append(p_temp)
 		
 		permutations = tempPermutations
