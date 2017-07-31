@@ -1,6 +1,7 @@
+# Might be useful to find out if the parts necessary to produce something are present in an inventory
+
 import sys
 
-	
 
 print(sys.argv[0])		
 
