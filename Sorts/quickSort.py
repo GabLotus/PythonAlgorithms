@@ -1,46 +1,26 @@
-def quickSort(ar):
-	
-	if len(ar) <= 1:
-		return ar
-	
-	else:
-		pivot = len(ar)//2
-		
-		i = 0
-		j = len(ar) -1
-		pivot_value = ar[pivot]
-		
-		while i <= j:
-			while ar[i] < ar[pivot]:
-				i += 1
-				print(i)
-				
-			while ar[j] > ar[pivot]:
-				j -= 1
-			
-			if i <= j:
-		
-				
-				ar[i], ar[j] = ar[j], ar[i]
-				if i == pivot or j == pivot:
-					if i == pivot:
-						pivot = j
-					elif j == pivot:
-						pivot = i
-					
-					
-				i += 1
-				j -= 1
-				
-				
-				
+# https://www.youtube.com/watch?v=SLauY6PpjW4&t=213s
 
-		
+def quickSort(ar, left, right):
+	index = partition(ar, left, right)
+	if left < index - 1:
+		quickSort(ar, left, index -1)
+	if right > index:
+		quickSort(ar, index, right)
+
+def partition(ar, left, right):
+		pivot = ar[(left + right)//2]
+		while(left <= right):
+			while(arr[left] < pivot):
+				left += 1
+			while(arr[right] > pivot):
+				right -= 1
 			
-		print(str(ar[0:pivot]) + " et " + str(ar[pivot:len(ar)]))
-		return quickSort(ar[0:pivot]) + quickSort(ar[pivot:len(ar)])
-		
+			if left <= right:
+				ar[left], ar[right] = ar[right], ar[left]
+				left += 1
+				right -= 1	
+		return left
 
 arr = [1,4,12,36,9,6,0,0,1338,-1,-9001,144]
-arr = quickSort(arr)
+quickSort(arr, 0, len(arr) - 1)
 print(str(arr))
