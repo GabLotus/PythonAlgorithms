@@ -14,7 +14,7 @@ def fib(n):
 		for i in range(n):
 			if (i/n)*100 > percentage_complete:
 				percentage_complete += 1
-				print(str(percentage_complete) + "\r", flush = True)
+				sys.stdout.write(str(percentage_complete) + "\r")
 			fib = n_minus_one + n_minus_two
 			n_minus_two = n_minus_one
 			n_minus_one = fib
