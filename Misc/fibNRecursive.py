@@ -13,7 +13,7 @@ def fib(n):
 		
 n = 0
 		
-if len(sys.argv) < 1:
+if len(sys.argv) < 2:
 	n = 8
 else:
 	n = int(sys.argv[1])
