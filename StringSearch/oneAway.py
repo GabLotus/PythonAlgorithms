@@ -1,50 +1,41 @@
 import sys
 
-def equalLenght(s, d):
+
+	
+def generalCase(s,d):
+	if len(s) - len(d) > 1:
+		return False
+	
 	mismatch = 0
-	for c1, c2 in zip(s, d):
-		if c1 != c2:
-			mismatch += 1
 	
-	return mismatch <= 1
-	
-
-def oneLenght(s, d):
-	
-	fails = 0
 	for i in range(len(d)):
-		while i + fails >= len(s):
-			if s[i + fails] != d[i]:
-				while s[i+fails] != d[i]:
-					fails += 1
-					if fails > 1: break
-				
-		if fails > 1: break
+		while s[i] != d[i]:
+			mismatch += 1
+			if mismatch > 1:
+				return False
+			if len(s) > len(d):
+				s = s[0: i] + s[i+1: len(s)]
+			else:
+				break
 	
-	return fails <= 1
+	return True
+			
 	
-	
 
+s = "abacd"
+d = "abcd"
 
-def moreLenght():
-	return False
-
-
-
-s = "abcd"
-d = "abce"
+if len(sys.argv) < 3:
+	print("testing with default value")
+else:
+	s = sys.argv[1]
+	d = sys.argv[2]
 
 if len(s) < len(d):
 	s, d = d, s
 	
-oneAway = True
+oneAway = generalCase(s, d)
 
-if len(s) == len(d):
-	oneAway = equalLenght(s, d)
-elif len(s) - len(d) == 1:
-	oneAway = oneLenght(s, d)
-else:
-	oneAway = moreLenght();
 	
 	
 
