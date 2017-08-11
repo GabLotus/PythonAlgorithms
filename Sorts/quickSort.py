@@ -1,4 +1,3 @@
-# https://www.youtube.com/watch?v=SLauY6PpjW4&t=213s
 
 def quickSort(ar, left, right):
 	index = partition(ar, left, right)

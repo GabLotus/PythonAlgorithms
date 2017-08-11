@@ -14,6 +14,6 @@ def selectionSort(ar):
 		
 
 
-a = [ 0, 2, 0, 3, 6, 5, 2, 1, 1, 1, 9]
+a = [ 5, 2, 0, 3, 6, 5, 2, 1, 1, 1, 9, -900, 123]
 a = selectionSort(a)
 print(a)
