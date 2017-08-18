@@ -3,13 +3,16 @@
 def changeDirection(vertical, positive):
 	
 	if (not vertical) and positive: #right
-		return (True, True) #down
+		return (True, True) # go down
+		
 	elif vertical and positive: #down
-		return (False, False) #left
+		return (False, False) #go left
+		
 	elif (not vertical) and (not positive): #left
-		return (True, False) #up
+		return (True, False) #go up
+		
 	else: #up
-		return (False, True) #right
+		return (False, True) #go right
 
 s= [ [1, 2, 3, 4],
 	 [5, 6, 7, 8],
@@ -53,13 +56,8 @@ while(len(visited) < size):
 			i -= 1
 
 			
-	else:
+	else: #up
 		if (j - 1) < 0 or ((i, j - 1) in visited):
 			vertical, positive = changeDirection(vertical, positive)
 		else:
 			j -= 1
-			
-	
-	
-
-print("yo")
