@@ -1,18 +1,18 @@
 
 
-def changeDirection(vertical, positive):
+def changeDirection(direction):
 	
-	if (not vertical) and positive: #right
-		return (True, True) # go down
+	if direction == "right": #right
+		return "down" # go down
 		
-	elif vertical and positive: #down
-		return (False, False) #go left
+	elif direction == "down": #down
+		return "left" #go left
 		
-	elif (not vertical) and (not positive): #left
-		return (True, False) #go up
+	elif direction == "left": #left
+		return "up" #go up
 		
 	else: #up
-		return (False, True) #go right
+		return "right" #go right
 
 s= [ [1, 2, 3, 4],
 	 [5, 6, 7, 8],
@@ -24,8 +24,7 @@ size = len(s) * len(s[0])
 
 visited = {}
 
-vertical = False
-positive = True
+direction = "right"
 
 i, j = 0, 0
 
@@ -36,28 +35,28 @@ while(len(visited) < size):
 		visited[(i,j)] = True
 		print(s[i][j])
 	
-	if (not vertical) and positive: #right
+	if direction == "right": #right
 		if (i + 1) > (len(s) - 1) or ((i+1, j) in visited):		
-			vertical, positive = changeDirection(vertical, positive)
+			direction = changeDirection(direction)
 		else:
 			
 			i += 1
 	
-	elif vertical and positive: #down
+	elif direction == "down": #down
 		if (j + 1) > (len(s[0]) - 1) or ((i, j+1) in visited):
-			vertical, positive = changeDirection(vertical, positive)
+			direction = changeDirection(direction)
 		else:
 			j += 1
 		
-	elif (not vertical) and (not positive): #left
+	elif direction == "left": #left
 		if (i - 1) < 0  or ((i - 1, j) in visited):
-			vertical, positive = changeDirection(vertical, positive)
+			direction = changeDirection(direction)
 		else:
 			i -= 1
 
 			
 	else: #up
 		if (j - 1) < 0 or ((i, j - 1) in visited):
-			vertical, positive = changeDirection(vertical, positive)
+			direction = changeDirection(direction)
 		else:
 			j -= 1
