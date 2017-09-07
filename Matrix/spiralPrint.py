@@ -60,3 +60,4 @@ while(len(visited) < size):
 			direction = changeDirection(direction)
 		else:
 			j -= 1
+
