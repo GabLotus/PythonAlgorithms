@@ -66,6 +66,18 @@ def findIntersection(head1, head2):
 	
 	return Node("nothing found")
 	
+def findLoop(head):
+	listDict = {}
+	listDict[head] = True
+	while head.next is not None:
+		if head.next in listDict:
+			return head.next
+		else:
+			listDict[head.next] = True
+			head = head.next 
+		
+	return Node("no loop found")
+	
 	
 		
 		
@@ -91,6 +103,14 @@ interList2.appendNode('e')
 interList.appendConstructedNode(interList2.next.next)
 
 
+loopList = Node(1)
+loopList.appendNode(2)
+loopList.appendNode(3)
+loopList.appendNode(4)
+loopList.appendNode(5)
+loopList.appendNode(6)
+loopList.appendConstructedNode(loopList.next.next.next)
+
 print(generateNumber(list, 1, False))
 print(generateReverseNumber(list))
 print(getLength(list))
@@ -100,3 +120,5 @@ printList(interList)
 intersectionFound = findIntersection(interList, interList2)
 print(intersectionFound.data)
 
+print(findLoop(list).data)
+print(findLoop(loopList).data)
