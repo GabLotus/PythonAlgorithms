@@ -12,7 +12,7 @@ def hasNeighbor(node, data):
     return False
 
 def findNode(node, data, stack):
-    stack[node.data] = True
+    stack.append(node.data)
     if node.data == data:
         print("Node found")
         return True
@@ -22,6 +22,7 @@ def findNode(node, data, stack):
                 print("visiting node: " + str(neighbor.data))
                 if findNode(neighbor, data, stack):
                     return True
+                stack.pop()
 
     return False
 
@@ -38,8 +39,8 @@ firstNode.neighbors[3].neighbors.append(Node('x'))
 firstNode.neighbors[3].neighbors[0].neighbors.append(Node('z'))
 
 firstNode.neighbors.append(Node('f'))
-stack = {}
-x = findNode(firstNode, 'i', stack)
+stack = []
+x = findNode(firstNode, 'z', stack)
 print(stack)
 print(x)
 
