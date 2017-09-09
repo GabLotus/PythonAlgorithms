@@ -28,12 +28,41 @@ def inOrderPrint(root):
 		inOrderPrint(root.right)
 
 
+def findNode(root, data, path):
+	path.append(root.data)
+	if data == root.data:
+		return path
+	elif data < root.data:
+		if root.left is not None:
+			return findNode(root.left , data, path)
+		else:
+			return False
+	elif data > root.data:
+		if root.right is not None:
+			return findNode(root.right , data, path)
+		else:
+			return False
+
+
+
 root = Node(8)
 insertNode(root, 21)
 insertNode(root, 3)
 insertNode(root, 432)
 insertNode(root, 0)
 insertNode(root, -1)
+insertNode(root, 123)
+insertNode(root, 99)
+insertNode(root, 23)
+insertNode(root, 4)
+insertNode(root, 1)
+insertNode(root, 2)
 
 inOrderPrint(root)
+path = []
+found = findNode(root, 7, path)
+if found:
+	print(found)
+else:
+	print("no node found")
 	
