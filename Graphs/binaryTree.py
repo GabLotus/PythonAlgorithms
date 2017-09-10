@@ -43,6 +43,41 @@ def findNode(root, data, path):
 		else:
 			return False
 
+def pickMedian(array):
+	if len(array) > 1:
+		array1 = array[0:len(array)//2]
+	else:
+		array1 = []
+
+	if len(array) > 1:
+		array2 = array[len(array)//2 + 1: len(array)]
+	else:
+		 array2 = []
+
+	median = array[len(array)//2]
+	return array1, array2, median
+
+def minHeightInsertion(root, array):
+	array_a, array_b, median = pickMedian(array)
+	root = Node(median)
+	arrays = []
+	arrays.append(array_a)
+	arrays.append(array_b)
+	print(median, array_a, array_b)
+	while len(arrays) > 0:
+		array_c = arrays.pop(0)
+		array_a, array_b, median = pickMedian(array_c)
+		print(median, array_a, array_b)
+		
+		insertNode(root, median)
+		if len(array_a) > 0:
+			arrays.append(array_a)
+		if len(array_b) > 0:
+			arrays.append(array_b)
+		
+
+
+
 
 
 root = Node(8)
@@ -66,3 +101,9 @@ if found:
 else:
 	print("no node found")
 	
+array = [0,1,2,3,4,5,6,7,8]
+
+print(array)
+array_a, array_b, median = pickMedian(array)
+yo = None
+minHeightInsertion(yo, array)
