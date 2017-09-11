@@ -12,31 +12,13 @@ class Dependency:
         self.depends_on = depends_on
 
 def complete(task, t_list):
-    
-    print("___________________")
-    
-    print("Completing task: " + str(task.name))
-    
-
     for i in range(0, len(t_list)):
-        print(len(t_list))
         if t_list[i].name == task.name:
             del t_list[i]
             break
-
-
-
-    print("_____________________")
-    
-
     for temp_task in t_list:
         if task.name in temp_task.dependencies:
-            print("deleting: " + str(task.name) + " from : " + str(temp_task.name))
-            print(temp_task.dependencies)
             del temp_task.dependencies[task.name]
-            print(temp_task.dependencies)
-
-    
 
 def taskAvailable(t_list):
     for task in t_list:
@@ -45,7 +27,16 @@ def taskAvailable(t_list):
     
     return False
 
-
+def getProjectSchedule(t_list, order):
+    while len(t_list) > 0 and taskAvailable(t_list):
+        for task in t_list:
+            if len(task.dependencies) == 0:
+                complete(task, t_list)
+                order.append(task.name)
+    if len(t_list) > 0:
+        return False
+    else:
+        return True
 
 list_of_tasks = []
 list_of_tasks.append(Task('a', []))
@@ -68,14 +59,7 @@ for dependency in list_of_dependencies:
 
 order = []
 
-while len(list_of_tasks) > 0 and taskAvailable(list_of_tasks):
-    for task in list_of_tasks:
-        if len(task.dependencies) == 0:
-            complete(task, list_of_tasks)
-            order.append(task.name)
-
-print(order)
-if len(list_of_tasks) == 0:
+if getProjectSchedule(list_of_tasks, order):
     print(order)
 else:
     print("error")
