@@ -27,6 +27,33 @@ def inOrderPrint(root):
 	if root.right is not None:
 		inOrderPrint(root.right)
 
+def inOrderArray(root):
+	left_array = []
+	right_array = []
+	if root.left is not None:
+		left_array = inOrderArray(root.left)
+	if root.right is not None:
+		right_array = inOrderArray(root.right)
+
+	array = left_array
+	array.append(root.data)
+	array.extend(right_array)
+	return array
+	
+def trySum(root, sum_so_far, target, count):
+	if root.data + sum_so_far == target:
+		count += 1	
+	if root.right is not None:
+		count = trySum(root.right, root.data + sum_so_far, target, count)
+	if root.left is not None:
+		count = trySum(root.left, root.data + sum_so_far, target, count)	
+	return count
+
+
+
+
+
+
 
 def findNode(root, data, path):
 	path.append(root.data)
@@ -139,9 +166,26 @@ def isBinarySearchTree(root):
 	
 	return left_good and right_good
 
+def isIdenticalTree(root_a, root_b):
+	if root_a.data != root_b.data:
+		return False
+
+	if (root_a.left is not None) and (root_b.left is not None):
+		if isIdenticalTree(root_a.left, root_b.left) == False:
+			return False
+	elif ((root_a.left is None) and (root_b.left is None)) == False:
+		return False
+
+	if (root_a.right is not None) and (root_b.right is not None):
+		if isIdenticalTree(root_a.right, root_b.right) == False:
+			return False
+	elif ((root_a.right is None) and (root_b.right is None)) == False:
+		return False
 	
-
-
+	return True
+	
+	
+		
 
 
 root = Node(8)
@@ -175,6 +219,20 @@ insertNode(root4, 8)
 
 
 
+root5 = Node(7)
+insertNode(root5, 3)
+insertNode(root5, 10)
+insertNode(root5, 11)
+insertNode(root5, 14)
+insertNode(root5, 12)
+
+root6 = Node(7)
+insertNode(root6, 3)
+insertNode(root6, 10)
+insertNode(root6, 11)
+insertNode(root6, 14)
+insertNode(root6, 13)
+
 
 inOrderPrint(root)
 path = []
@@ -198,3 +256,28 @@ print(isBalanced(root4))
 print(isBinarySearchTree(root4))
 root4.left.left = Node(10)  # root4 not a binary tree anymore
 print(isBinarySearchTree(root4))
+print("________identicalTree___________")
+print(isIdenticalTree(root5, root6))
+
+print("_______inOrderArray________")
+print(inOrderArray(root5))
+
+print("________sum_________")
+
+root7 = Node(7)
+insertNode(root7, 10)
+insertNode(root7, 8)
+insertNode(root7, 6)
+insertNode(root7, 5)
+insertNode(root7, 3)
+insertNode(root7, 2)
+insertNode(root7, 1)
+insertNode(root7, 1)
+insertNode(root7, 4)
+insertNode(root7, 1)
+insertNode(root7, 0)
+insertNode(root7, -1)
+
+
+
+print(trySum(root7, 0, 25, 0))
