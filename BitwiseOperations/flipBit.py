@@ -20,7 +20,7 @@ def numberBinaryLenght(number):
     return i
 
 
-def biggestSequencePossible(number):
+def longestSequencePossible(number):
     longest = 0
     for x in range(0, numberBinaryLenght(number)):
         mask = 1 << x
@@ -34,10 +34,10 @@ print("looking for the longest sequence of ones in 1011011111101011. Expects: 6"
 print(longestOneSequence(0b1011011111101011))
 print("_____________________________________________________________________________________________________________________")
 print("looking for the longest sequence of ones in 1011011111101011 provided we can flip any one bit from 0 to 1. Expects: 9")
-print(biggestSequencePossible(0b1011011111101011))
+print longestSequencePossible(0b1011011111101011))
 print("looking for the longest sequence of ones in 1011011011101011 provided we can flip any one bit from 0 to 1. Expects: 6")
-print(biggestSequencePossible(0b1011011011101011))
+print longestSequencePossible(0b1011011011101011))
 print("looking for the longest sequence of ones in 1011010001101011 provided we can flip any one bit from 0 to 1. Expects: 4")
-print(biggestSequencePossible(0b1011010001101011))
+print longestSequencePossible(0b1011010001101011))
 print("looking for the longest sequence of ones in 1000000000000001 provided we can flip any one bit from 0 to 1. Expects: 2")
-print(biggestSequencePossible(0b1000000000000001))
+print longestSequencePossible(0b1000000000000001))
